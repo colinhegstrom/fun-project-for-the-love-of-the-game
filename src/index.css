@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Archivo Black", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  /* navy blue ramp, matched to the EWC logo
+     (token names kept as "moss" so every component picks it up) */
+  --color-moss-50: #eef3fb;
+  --color-moss-100: #d9e3f4;
+  --color-moss-200: #b3c6e8;
+  --color-moss-300: #86a3d6;
+  --color-moss-400: #5a7fc0;
+  --color-moss-500: #3a5fa3;
+  --color-moss-600: #2a4a85;
+  --color-moss-700: #1f3766;
+  --color-moss-800: #172a4f;
+  --color-moss-900: #12203f;
+
+  /* near-black navy, and the logo's yellow as the pop color */
+  --color-ink: #0b1630;
+  --color-bone: #f7f9fc;
+  --color-zing: #f5c32c;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-zing);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-moss-600);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* edge-to-edge scrolling text strip */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 22s linear infinite;
+}
+
+.marquee-track--slow {
+  animation-duration: 38s;
+}
+
+.marquee-track--reverse {
+  animation-direction: reverse;
+}
+
+/* chunky offset border used on cards and buttons */
+.chunk {
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+}
+
+.chunk-lg {
+  box-shadow: 8px 8px 0 0 var(--color-ink);
+}
+
+.grain {
+  background-image: radial-gradient(
+    var(--color-moss-200) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+}
